@@ -11,7 +11,7 @@ class User(models.Model):
 
 
     def __str__(self):
-        return self.email
+         return self.email
 
 
 class Item(models.Model):
@@ -24,6 +24,9 @@ class Item(models.Model):
     like_user_set = models.ManyToManyField('User', null=True, blank=True, related_name='like_user_set', through='Like')
     img_url = models.CharField(max_length=255)
     description = models.TextField(max_length=500, default='')
+
+    def __str__(self):
+         return self.name
 
 class Like(models.Model):
     user = models.ForeignKey('User')
