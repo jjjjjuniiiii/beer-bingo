@@ -128,6 +128,7 @@ def filtering(content):
     return completed
 
 def insertDB(namee, companyy, countryy, ratee, descriptionn, stylee, img):
+    print("insertDB....\n")
     item = Item(name = namee, company = companyy, country = countryy, style = stylee, created_date = timezone.now(), rate = ratee, description = descriptionn, img_url=img)
     item.save()
 

@@ -32,9 +32,16 @@ class Like(models.Model):
     user = models.ForeignKey('User')
     item = models.ForeignKey('Item')
 
+    def __str__(self):
+         return self.item
+
 class Flavor(models.Model):
     style = models.CharField(max_length=50)
     item = models.ForeignKey('Item')
+
+    def __str__(self):
+         return self.style
+
 
 # class Post(models.Model):
 #     author = models.ForeignKey('User')

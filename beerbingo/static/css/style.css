@@ -2128,3 +2128,16 @@ h6 { font-size: 18px; }
 	-moz-transition: all 1s ease;
 	transition: all 1s ease;	
 }
+/* BeerBingo/contact 에 적용*/
+ul.errorlist{
+	margin: 0;
+	padding: 0;
+}
+.errorlist li {
+	background-color: red;
+	color : white;
+	display: block;
+	font-size: 10px;
+	margin: 0 0 3px;
+	padding: 5px 5px;
+}

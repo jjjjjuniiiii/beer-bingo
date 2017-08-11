@@ -44,6 +44,14 @@
 		  <link rel="apple-touch-icon-precomposed" href='{% static "images/fav-57.png" %}'>
 		  <link rel="shortcut icon" href='{% static "images/fav.png" %}'>
 
+
+		  <!--jQuery file 
+		  <script type="text/javascript">
+		   $(document).ready(function){
+		  		searchBeer();
+		  	}); 
+		  </script>-->
+
 		</head>
 		<body> 
 
@@ -54,33 +62,36 @@
 				<!-- Nested Container Starts -->
 				<div class="container text-center">
 					<h3 class="text-normal">Find the best Beers, &amp; Tastes in Your Place</h3>
-					<form class="top-search">
+					<form method="get" action="/search" class="top-search">
 						<div class="input-group-md">
 							<div class="input-group-btn search-panel">
 								<button type="button" class="btn btn-lg btn-default dropdown-toggle" data-toggle="dropdown">
 									<span class="fa fa-map-marker"></span>
-									<span class="text-label">Please type location</span> 
+									<span class="text-label">Find Your Beer</span> 
 									<span class="fa fa-angle-down"></span>
 								</button>
 								<ul class="dropdown-menu flat" role="menu">
-									<li><a href="#">대표지역1</a></li>
-									<li class="lead text-uppercase">Popular Places</li>
-									<li><a href="#">대표지역2</a></li>
-									<li><a href="#">대표지역3</a></li>
-									<li><a href="#">대표지역4</a></li>
-									<li><a href="#">대표지역5</a></li>
+									<li><a href="#">NAME</a></li>
+									<li><a href="#">STYLE</a></li>
+									<li><a href="#">COMPANY</a></li>
+									<li><a href="#">COUNTRY</a></li>
 								</ul>
 							</div>
 							<div class="form-group">
-								<div class="icon-addon addon-lg">
+								<div class="icon-addon addon-lg" id="search">
 									<label class="fa fa-search"></label>
-									<input type="text" class="form-control input-lg flat" name="search-location" placeholder="Search for a Beer's Name, Company, Country, etc..,">
+									<input type="text" id="searchBeer" class="form-control input-lg flat" name="search-item" placeholder="Search for a Beer's Name, Company, Country, etc..,">
 								</div>
 							</div>
 							<span class="input-group-btn">
-								<button class="btn btn-lg btn-secondary animation text-uppercase" type="button"><a href="{% url 'crawl' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a></button>
+								<button class="btn btn-lg btn-secondary animation text-uppercase" type="submit">Search</button>
 							</span>
 						</div>
+						{% if errors %}
+							{% for error in errors %}
+							<script>alert( '{{error}}' );</script>
+							{% endfor %}
+						{% endif %}
 					</form>
 				</div>
 				<!-- Nested Container Ends -->
@@ -534,7 +545,6 @@
 				<!-- Nested Container Ends -->
 			</section>
 			<!-- Newsletter Section Ends -->
-
 			{% endblock content %}
 
 		</body>

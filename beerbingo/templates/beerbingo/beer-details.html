@@ -52,7 +52,7 @@
 				<!-- Nested Container Starts -->
 				<div class="container text-center">
 					<h3 class="text-normal">Find the best Beers &amp; Tastes in Your Place</h3>
-					<form class="top-search">
+					<form method="get" action="/search" class="top-search">
 						<div class="input-group-md">
 							<div class="input-group-btn search-panel">
 								<button type="button" class="btn btn-lg btn-default dropdown-toggle" data-toggle="dropdown">
@@ -61,38 +61,41 @@
 									<span class="fa fa-angle-down"></span>
 								</button>
 								<ul class="dropdown-menu flat" role="menu">
-									<li><a href="#">All of Texas</a></li>
-									<li class="lead text-uppercase">Popular Places</li>
-									<li><a href="#">Huston, Texas</a></li>
-									<li><a href="#">San Antonio, Texas</a></li>
-									<li><a href="#">Galveston, Texas</a></li>
-									<li><a href="#">Corpus Christi, Texas</a></li>
+									<li><a href="#">NAME</a></li>
+									<li><a href="#">STYLE</a></li>
+									<li><a href="#">COMPANY</a></li>
+									<li><a href="#">COUNTRY</a></li>
 								</ul>
 							</div>
 							<div class="form-group">
-								<div class="icon-addon addon-lg">
+								<div class="icon-addon addon-lg" id="search">
 									<label class="fa fa-search"></label>
-									<input type="text" class="form-control input-lg flat" name="search-location" placeholder="Search for a Beer's Name, Company, Country, etc..,">
+									<input type="text" id="searchBeer" class="form-control input-lg flat" name="search-item" placeholder="Search for a Beer's Name, Company, Country, etc..,">
 								</div>
 							</div>
 							<span class="input-group-btn">
-								<button class="btn btn-lg btn-secondary animation text-uppercase" type="button">Search</button>
+								<button class="btn btn-lg btn-secondary animation text-uppercase" type="submit">Search</button>
 							</span>
 						</div>
+						{% if errors %}
+							{% for error in errors %}
+							<script>alert( '{{error}}' );</script>
+							{% endfor %}
+						{% endif %}
 					</form>
 				</div>
 				<!-- Nested Container Ends -->
 			</section>
 			<!-- Search Section Ends -->
 			<!-- BreadCrumb Starts -->
+			{% if searchObj %}
+			{% for searchedObj in searchObj %}
 			<div class="breadcrumb flat">
 				<!-- Nested Container Starts -->
 				<div class="container text-center-sm text-center-xs">
 					<ul class="list-unstyled list-inline">
 						<li><a href="/index">Home</a></li>
-						<li><a href="#">Restaurants in Hyderabad</a></li>
-						<li><a href="#">Begumpet</a></li>
-						<li class="active">Hyderabad Spl Food Dabha</li>
+						<li class="active"> {{searchedObj.name}} </li>
 					</ul>
 				</div>
 				<!-- Nested Container Ends -->
@@ -102,12 +105,12 @@
 			<div class="container main-container">
 				<!-- Heading Starts -->
 				<h4 class="main-heading-1 text-center-sm text-center-xs">
-					Hyderabad Special Food Dabha, Begumpet
+					{{searchedObj.name}}
 				</h4>
 				<!-- Heading Ends -->
 				<!-- Main Banner Starts -->
 				<div class="banner-area">
-					<img src='{% static "images/banners/main-banner-img2.jpg" %}' alt="Banner" class="img-responsive border-radius-4">
+					<img src="{{searchedObj.img_url}}" alt="BeerImage" class="img-responsive border-radius-4">
 				</div>
 				<!-- Main Banner Ends -->
 				<!-- Nested Row Starts -->
@@ -118,7 +121,7 @@
 						<div class="menu-tabs-wrap">
 							<!-- Menu Tabs List Starts -->
 							<ul class="nav nav-tabs nav-menu-tabs text-center-xs">
-								<li class="active"><a href="#menu" data-toggle="tab">Menu</a></li>
+								<li class="active"><a href="#menu" data-toggle="tab">Beer</a></li>
 								<li><a href="#information" data-toggle="tab">Information</a></li>
 								<li><a href="#gallery" data-toggle="tab">Gallery</a></li>
 								<li><a href="#reviews" data-toggle="tab">Reviews</a></li>
@@ -134,19 +137,12 @@
 										<!-- Left Column Starts -->
 										<div class="col-sm-4 col-xs-12">
 											<div class="side-block-1">
-												<h6>Delivery Menu</h6>
+												<h6>Interesting Beer</h6>
 												<ul class="list-unstyled list-style-2">
-													<li>Soups</li>
-													<li>Southern Grills: Veg.</li>
-													<li>Southern Grills: Non-Veg.</li>
-													<li>Starters</li>
-													<li>Chinese Starters</li>
-													<li>North Indian Main Course</li>
-													<li>Traditional Telugu Maincourse</li>
-													<li>Indian Breads</li>
-													<li>Rice, Biryani &amp; Pulao</li>
-													<li>Accompaniments</li>
-													<li>Desserts &amp; Beverages</li>
+													<li>Flavor</li>
+													<li>Taste</li>
+													<li>item</li>
+													<li>item</li>
 												</ul>
 											</div>
 										</div>
@@ -174,36 +170,6 @@
 														<a href="#" class="btn btn-tertiary animation"><span class="price-new">$7.99</span> / <span class="price-old">$10</span> <i class="fa fa-plus-circle"></i></a>
 													</div>
 												</div>
-												<div class="order-menu-item clearfix">
-													<div class="pull-left">
-														<h6>Mokkajonna Shorba</h6>
-														<p>Thick sweet corn soup</p>
-														<i class="fa fa-dot-circle-o veg"></i>
-													</div>
-													<div class="pull-right">
-														<a href="#" class="btn btn-tertiary animation"><span class="price-new">$11.55</span> / <span class="price-old">$15</span> <i class="fa fa-plus-circle"></i></a>
-													</div>
-												</div>
-												<div class="order-menu-item clearfix">
-													<div class="pull-left">
-														<h6>Kodi Mokkajonna Shorba</h6>
-														<p>Thick sweet corn soup with shredded chicken</p>
-														<i class="fa fa-dot-circle-o non-veg"></i>
-													</div>
-													<div class="pull-right">
-														<a href="#" class="btn btn-tertiary animation"><span class="price-new">$7.99</span> / <span class="price-old">$10</span> <i class="fa fa-plus-circle"></i></a>
-													</div>
-												</div>
-												<div class="order-menu-item clearfix">
-													<div class="pull-left">
-														<h6>Paya Soup</h6>
-														<p>Lamb trotters soup cooked in traditional spices</p>
-														<i class="fa fa-dot-circle-o non-veg"></i>
-													</div>
-													<div class="pull-right">
-														<a href="#" class="btn btn-tertiary animation"><span class="price-new">$7.99</span> / <span class="price-old">$10</span> <i class="fa fa-plus-circle"></i></a>
-													</div>
-												</div>
 												<!-- Order Menu List #1 Ends -->
 												<!-- Spacer Starts -->
 												<div class="spacer big"></div>
@@ -223,36 +189,6 @@
 														<a href="#" class="btn btn-tertiary animation"><span class="price-new">$7.99</span> / <span class="price-old">$10</span> <i class="fa fa-plus-circle"></i></a>
 													</div>
 												</div>
-												<div class="order-menu-item clearfix">
-													<div class="pull-left">
-														<h6>Mokkajonna Shorba</h6>
-														<p>Thick sweet corn soup</p>
-														<i class="fa fa-dot-circle-o veg"></i>
-													</div>
-													<div class="pull-right">
-														<a href="#" class="btn btn-tertiary animation"><span class="price-new">$11.55</span> / <span class="price-old">$15</span> <i class="fa fa-plus-circle"></i></a>
-													</div>
-												</div>
-												<div class="order-menu-item clearfix">
-													<div class="pull-left">
-														<h6>Kodi Mokkajonna Shorba</h6>
-														<p>Thick sweet corn soup with shredded chicken</p>
-														<i class="fa fa-dot-circle-o non-veg"></i>
-													</div>
-													<div class="pull-right">
-														<a href="#" class="btn btn-tertiary animation"><span class="price-new">$7.99</span> / <span class="price-old">$10</span> <i class="fa fa-plus-circle"></i></a>
-													</div>
-												</div>
-												<div class="order-menu-item clearfix">
-													<div class="pull-left">
-														<h6>Paya Soup</h6>
-														<p>Lamb trotters soup cooked in traditional spices</p>
-														<i class="fa fa-dot-circle-o non-veg"></i>
-													</div>
-													<div class="pull-right">
-														<a href="#" class="btn btn-tertiary animation"><span class="price-new">$7.99</span> / <span class="price-old">$10</span> <i class="fa fa-plus-circle"></i></a>
-													</div>
-												</div>
 												<!-- Order Menu List #2 Ends -->
 												<!-- Spacer Starts -->
 												<div class="spacer big"></div>
@@ -267,36 +203,6 @@
 														<h6>Miryala Rasam</h6>
 														<p>Pepper Rasam Masala Soup</p>
 														<i class="fa fa-dot-circle-o veg"></i>
-													</div>
-													<div class="pull-right">
-														<a href="#" class="btn btn-tertiary animation"><span class="price-new">$7.99</span> / <span class="price-old">$10</span> <i class="fa fa-plus-circle"></i></a>
-													</div>
-												</div>
-												<div class="order-menu-item clearfix">
-													<div class="pull-left">
-														<h6>Mokkajonna Shorba</h6>
-														<p>Thick sweet corn soup</p>
-														<i class="fa fa-dot-circle-o veg"></i>
-													</div>
-													<div class="pull-right">
-														<a href="#" class="btn btn-tertiary animation"><span class="price-new">$11.55</span> / <span class="price-old">$15</span> <i class="fa fa-plus-circle"></i></a>
-													</div>
-												</div>
-												<div class="order-menu-item clearfix">
-													<div class="pull-left">
-														<h6>Kodi Mokkajonna Shorba</h6>
-														<p>Thick sweet corn soup with shredded chicken</p>
-														<i class="fa fa-dot-circle-o non-veg"></i>
-													</div>
-													<div class="pull-right">
-														<a href="#" class="btn btn-tertiary animation"><span class="price-new">$7.99</span> / <span class="price-old">$10</span> <i class="fa fa-plus-circle"></i></a>
-													</div>
-												</div>
-												<div class="order-menu-item clearfix">
-													<div class="pull-left">
-														<h6>Paya Soup</h6>
-														<p>Lamb trotters soup cooked in traditional spices</p>
-														<i class="fa fa-dot-circle-o non-veg"></i>
 													</div>
 													<div class="pull-right">
 														<a href="#" class="btn btn-tertiary animation"><span class="price-new">$7.99</span> / <span class="price-old">$10</span> <i class="fa fa-plus-circle"></i></a>
@@ -339,19 +245,12 @@
 										<!-- Left Column Starts -->
 										<div class="col-sm-4 col-xs-12">
 											<div class="side-block-1">
-												<h6>Delivery Menu</h6>
+												<h6>Interesting Beer</h6>
 												<ul class="list-unstyled list-style-2">
-													<li>Soups</li>
-													<li>Southern Grills: Veg.</li>
-													<li>Southern Grills: Non-Veg.</li>
-													<li>Starters</li>
-													<li>Chinese Starters</li>
-													<li>North Indian Main Course</li>
-													<li>Traditional Telugu Maincourse</li>
-													<li>Indian Breads</li>
-													<li>Rice, Biryani &amp; Pulao</li>
-													<li>Accompaniments</li>
-													<li>Desserts &amp; Beverages</li>
+													<li>Flavor</li>
+													<li>Taste</li>
+													<li>item</li>
+													<li>item</li>
 												</ul>
 											</div>
 										</div>
@@ -405,39 +304,6 @@
 												</ul>
 												<!-- Delivery Hours Ends -->
 												<hr>
-												<!-- Takeway Hours Starts -->
-												<h6><i class="fa fa-clock-o"></i> Takeway Hours</h6>
-												<ul class="list-unstyled timing-list">
-													<li class="clearfix">
-														<span class="pull-left">Monday</span>
-														<span class="pull-right text-right">12:00 - 15:30, 18:00 - 22:30</span>
-													</li>
-													<li class="clearfix">
-														<span class="pull-left">Tuesday</span>
-														<span class="pull-right text-right">12:00 - 15:30, 18:00 - 22:30</span>
-													</li>
-													<li class="clearfix">
-														<span class="pull-left">Wednesday</span>
-														<span class="pull-right text-right">12:00 - 15:30, 18:00 - 22:30</span>
-													</li>
-													<li class="clearfix">
-														<span class="pull-left">Thursday</span>
-														<span class="pull-right text-right">12:00 - 15:30, 18:00 - 22:30</span>
-													</li>
-													<li class="clearfix">
-														<span class="pull-left">Friday</span>
-														<span class="pull-right text-right">12:00 - 15:30, 18:00 - 22:30</span>
-													</li>
-													<li class="clearfix">
-														<span class="pull-left">Saturday</span>
-														<span class="pull-right text-right">12:00 - 15:30, 18:00 - 22:30</span>
-													</li>
-													<li class="clearfix">
-														<span class="pull-left">Sunday</span>
-														<span class="pull-right text-right">12:00 - 15:30, 18:00 - 22:30</span>
-													</li>
-												</ul>
-												<!-- Takeway Hours Ends -->
 												<hr>
 												<!-- Spacer Starts -->
 												<div class="spacer"></div>
@@ -900,6 +766,11 @@
 				<!-- Nested Row Ends -->
 			</div>
 			<!-- Main Container Ends -->
+			{% endfor %}
+			{% else %}
+				<p> No beers matched your search criteria</p>
+			{% endif %}
+
 			{% endblock content %}
 
 		</body>
