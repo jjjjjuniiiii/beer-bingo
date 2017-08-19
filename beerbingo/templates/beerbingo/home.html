@@ -1,0 +1,122 @@
+<div class="container">
+
+    <div class="photo-title">
+
+        <h1>Welcome to Our Photo Album</h1>
+
+    </div>
+
+    <div class="col-sm-12 photoalbum-buttons">
+
+        <form method="GET" action="" class="row">
+
+            <div class="col-sm-6">
+
+                <div class="input-group">
+
+                    <input class="form-control" type="text" name="q" placeholder="Search Posts" value="{{ request.GET.q }}"/>
+
+                    <span class="input-group-btn">
+
+                        <button class="btn btn-default" type="submit">Search <i class="fa fa-search"></i></button>
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        </form>
+
+
+
+        <div class="dropdown form-actions">
+
+            <button class="btn btn-primary gradient dropdown-toggle" type="button" data-toggle="dropdown">
+
+                <i class="fa fa-search"></i>
+
+                By Country
+
+            </button>
+
+            <ul class="dropdown-menu">
+
+                {% for obj in object_list %}
+
+                <li ><a href="#">{{ obj.country }}</a></li>
+
+                {% endfor %}
+
+            </ul>
+
+        </div>
+
+
+
+        <div class="dropdown form-actions">
+
+            <button class="btn btn-primary gradient dropdown-toggle" type="button" data-toggle="dropdown">
+
+                <i class="fa fa-search"></i>
+
+                By Name
+
+            </button>
+
+            <ul class="dropdown-menu">
+
+                {% for obj in object_list %}
+
+                <li><a href="#">{{ obj.name }}</a></li>
+
+                {% endfor %}
+
+            </ul>
+
+        </div>
+
+    </div>
+
+    <p id="photo-separator">______________________________________________</p>
+
+
+
+    <div class="row photo-post">
+
+        {% for obj in object_list %}
+
+        <div class="col-sm-3">
+
+            <div class="thumbnail">
+
+                <img src="{{ obj.pictures.url }}" class="img-responsive"/>
+
+                <div class="caption photo-description">
+
+                    <p class="photo-location">{{obj.name}}, {{obj.country}}</p>
+
+                    <p class="photo-time">Taken: Aug 04, 2016</p>
+
+                    <p><a href="" class="btn btn-primary" type="button">View</a></p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% if forloop.counter|divisibleby:4 %}
+
+        <div class='col-sm-12'><hr/></div></div><div></div><div class='row'>
+
+        {% endif %}
+
+        {% endfor %}
+
+    </div>
+
+
+
+</div>
+

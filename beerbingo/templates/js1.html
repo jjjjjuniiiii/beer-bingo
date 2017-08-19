@@ -1,0 +1,38 @@
+{% block js %}
+<script language="javascript">
+    $('#id_company_select').change(function() {populateCar(this)});
+    $('#id_country').addClass('countries');
+    names = {{ beer_form.names | safe }}
+    companies = {{ beer_form.companies | safe}};
+    populateBrand();
+    $("#id_name_select").empty();
+    $("#id_name_select").append('<option value="" disabled selected>First select a company</option>');
+    function populateBrand() {
+        $('#id_company_select').empty();
+        $("#id_company_select").append('<option value="" disabled selected>Select your option</option>');
+        $.each(companies, function(v) {
+            $('#id_company_select')
+            .append($("<option></option>")
+                .attr("value", companies[v])
+                .text(companies[v]));
+        });
+    }
+
+    function populateCar(event) {
+        company = $("#id_company_select option:selected").text();
+        $("#id_name_select").empty();
+        $("#id_name_select").append('<option value="" disabled selected>Select your option</option>');
+        for (let [b, bnames] of Object.entries(names)) {
+            if (b == company) {
+                    //alert(b);
+                    for (name in bnames) {
+                        $('#id_name_select')
+                        .append($("<option></option>")
+                            .attr("value", bnames[name])
+                            .text(bnames[name]));
+                    }
+                }
+            }
+        }
+    </script>
+    {% endblock %}

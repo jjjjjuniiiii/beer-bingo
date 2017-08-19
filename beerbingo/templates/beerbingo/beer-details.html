@@ -1,4 +1,4 @@
-{% extends 'beerbingo/base.html' %}
+{% extends 'beerbingo/base_search.html' %}
 {% load staticfiles %}
 
 <!DOCTYPE html>
@@ -47,46 +47,7 @@
 		</head>
 		<body> 
 			{% block content %}
-			<!-- Search Section Starts -->
-			<section class="search-area condensed parallax">
-				<!-- Nested Container Starts -->
-				<div class="container text-center">
-					<h3 class="text-normal">Find the best Beers &amp; Tastes in Your Place</h3>
-					<form method="get" action="/search" class="top-search">
-						<div class="input-group-md">
-							<div class="input-group-btn search-panel">
-								<button type="button" class="btn btn-lg btn-default dropdown-toggle" data-toggle="dropdown">
-									<span class="fa fa-map-marker"></span>
-									<span class="text-label">Please type location</span> 
-									<span class="fa fa-angle-down"></span>
-								</button>
-								<ul class="dropdown-menu flat" role="menu">
-									<li><a href="#">NAME</a></li>
-									<li><a href="#">STYLE</a></li>
-									<li><a href="#">COMPANY</a></li>
-									<li><a href="#">COUNTRY</a></li>
-								</ul>
-							</div>
-							<div class="form-group">
-								<div class="icon-addon addon-lg" id="search">
-									<label class="fa fa-search"></label>
-									<input type="text" id="searchBeer" class="form-control input-lg flat" name="search-item" placeholder="Search for a Beer's Name, Company, Country, etc..,">
-								</div>
-							</div>
-							<span class="input-group-btn">
-								<button class="btn btn-lg btn-secondary animation text-uppercase" type="submit">Search</button>
-							</span>
-						</div>
-						{% if errors %}
-							{% for error in errors %}
-							<script>alert( '{{error}}' );</script>
-							{% endfor %}
-						{% endif %}
-					</form>
-				</div>
-				<!-- Nested Container Ends -->
-			</section>
-			<!-- Search Section Ends -->
+			
 			<!-- BreadCrumb Starts -->
 			{% if searchObj %}
 			{% for searchedObj in searchObj %}
@@ -174,41 +135,7 @@
 												<!-- Spacer Starts -->
 												<div class="spacer big"></div>
 												<!-- Spacer Ends -->
-												<!-- Order Menu List #2 Starts -->
-												<h5>Southern Grills: Veg.</h5>
-												<p>
-													<img src='{% static "images/banners/tab-banner-img2.png" %}' alt="Banner" class="img-responsive img-center-xs">
-												</p>
-												<div class="order-menu-item clearfix">
-													<div class="pull-left">
-														<h6>Miryala Rasam</h6>
-														<p>Pepper Rasam Masala Soup</p>
-														<i class="fa fa-dot-circle-o veg"></i>
-													</div>
-													<div class="pull-right">
-														<a href="#" class="btn btn-tertiary animation"><span class="price-new">$7.99</span> / <span class="price-old">$10</span> <i class="fa fa-plus-circle"></i></a>
-													</div>
-												</div>
-												<!-- Order Menu List #2 Ends -->
-												<!-- Spacer Starts -->
-												<div class="spacer big"></div>
-												<!-- Spacer Ends -->
-												<!-- Order Menu List #3 Starts -->
-												<h5>Southern Grills: Non-Veg.</h5>
-												<p>
-													<img src='{% static "images/banners/tab-banner-img3.png" %}' alt="Banner" class="img-responsive img-center-xs">
-												</p>
-												<div class="order-menu-item clearfix">
-													<div class="pull-left">
-														<h6>Miryala Rasam</h6>
-														<p>Pepper Rasam Masala Soup</p>
-														<i class="fa fa-dot-circle-o veg"></i>
-													</div>
-													<div class="pull-right">
-														<a href="#" class="btn btn-tertiary animation"><span class="price-new">$7.99</span> / <span class="price-old">$10</span> <i class="fa fa-plus-circle"></i></a>
-													</div>
-												</div>
-												<!-- Order Menu List #3 Ends -->
+												
 											</div>
 											<!-- Order Menu Tab Pane Ends -->
 											<!-- Pagination Starts -->
@@ -265,10 +192,7 @@
 												<!-- Spacer Starts -->
 												<div class="spacer big"></div>
 												<!-- Spacer Ends -->
-												<p>Check out the $20 menu any drink or snack.........Cheers.</p>
-												<p>Bring your friends along &amp; party hard.</p>
-												<p>Spread the word - Food and Drinks at $20 bucks! Between 4.00 to 8.00 pm Last order @ 7.45 pm Club rules apply. Dress code mandatory. </p>
-												<p>Restaurants are solely responsible for the service; availability and quality of the events including all or any cancellations/ modifications/ complaints.</p>
+												<p>맥주설명</p>
 												<hr>
 												<!-- Delivery Hours Starts -->
 												<h6><i class="fa fa-clock-o"></i> Delivery Hours</h6>

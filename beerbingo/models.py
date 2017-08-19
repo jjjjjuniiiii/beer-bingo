@@ -42,6 +42,19 @@ class Flavor(models.Model):
     def __str__(self):
          return self.style
 
+# class Brand(models.Model):
+#     company = models.CharField(max_length=50)
+#     item = models.ForeignKey('Item')
+
+#     def __str__(self):
+#          return self.style
+
+# class QuestionInstance(models.Model):
+#     questionsSet = models.ForeignKey('Item')
+#     question     = models.ForeignKey('Question')
+#     parent       =  models.ForeignKey('self',null=True,blank=True)
+#     optional     = models.BooleanField(default=False)
+
 
 # class Post(models.Model):
 #     author = models.ForeignKey('User')

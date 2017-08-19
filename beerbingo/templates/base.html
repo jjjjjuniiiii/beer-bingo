@@ -287,12 +287,12 @@
         <script src='{% static "js/plugins/datepicker/bootstrap-datepicker.js" %}'></script>
         <script src='{% static "js/plugins/owl-carousel/owl.carousel.js" %}'></script>
         <script src='{% static "js/plugins/magnific-popup/jquery.magnific-popup.min.js" %}'></script>
-       <!--  <script src='{% static "https://maps.googleapis.com/maps/api/js?v=3&amp;sensor=false" %}'></script>  -->
+        <!--  <script src='{% static "https://maps.googleapis.com/maps/api/js?v=3&amp;sensor=false" %}'></script>  -->
         <script src='{% static "js/custom.js" %}'></script> 
 
         <!-- Custom Theme JavaScript -->
         <script src="{% static 'js/creative.js' %}"></script>
 
     </body>
-
+    {% block js %}{% endblock %}
     </html>
