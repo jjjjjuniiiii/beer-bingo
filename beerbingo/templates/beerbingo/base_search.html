@@ -123,56 +123,56 @@
         </nav>
         <!-- Main Menu Ends -->
         <!-- Search Section Starts -->
-            <section class="search-area condensed parallax">
-                <!-- Nested Container Starts -->
-                <div class="container text-center">
-                    <h3 class="text-normal">Find the best Beers &amp; Tastes in Your Place</h3>
-                    <form method="get" action="/search" class="top-search">
-                        <div class="input-group-md">
-                            <div class="input-group-btn search-panel">
-                                <button type="button" class="btn btn-lg btn-default dropdown-toggle" data-toggle="dropdown">
-                                    <span class="fa fa-map-marker"></span>
-                                    <span class="text-label">Please type location</span> 
-                                    <span class="fa fa-angle-down"></span>
-                                </button>
-                                <ul class="dropdown-menu flat" role="menu">
-                                    <li><a href="#">NAME</a></li>
-                                    <li><a href="#">STYLE</a></li>
-                                    <li><a href="#">COMPANY</a></li>
-                                    <li><a href="#">COUNTRY</a></li>
-                                </ul>
-                            </div>
-                            <div class="form-group">
-                                <div class="icon-addon addon-lg" id="search">
-                                    <label class="fa fa-search"></label>
-                                    <input type="text" id="searchBeer" class="form-control input-lg flat" name="search-item" placeholder="Search for a Beer's Name, Company, Country, etc..,">
-                                </div>
-                            </div>
-                            <span class="input-group-btn">
-                                <button class="btn btn-lg btn-secondary animation text-uppercase" type="submit">Search</button>
-                            </span>
+        <section class="search-area condensed parallax">
+            <!-- Nested Container Starts -->
+            <div class="container text-center">
+                <h3 class="text-normal">Find the best Beers &amp; Tastes in Your Place</h3>
+                <form method="get" action="/search" class="top-search">
+                    <div class="input-group-md">
+                        <div class="input-group-btn search-panel">
+                            <button type="button" class="btn btn-lg btn-default dropdown-toggle" data-toggle="dropdown">
+                                <span class="fa fa-map-marker"></span>
+                                <span class="text-label">Please type location</span> 
+                                <span class="fa fa-angle-down"></span>
+                            </button>
+                            <ul class="dropdown-menu flat" role="menu">
+                                <li><a href="#">NAME</a></li>
+                                <li><a href="#">STYLE</a></li>
+                                <li><a href="#">COMPANY</a></li>
+                                <li><a href="#">COUNTRY</a></li>
+                            </ul>
                         </div>
-                        {% if errors %}
-                            {% for error in errors %}
-                            <script>alert( '{{error}}' );</script>
-                            {% endfor %}
-                        {% endif %}
-                    </form>
-                    {% if item_list %}
-                    <script type="text/javascript">
-                        (function () {
-                            window.item_list = {{item_list|safe}};
-                        })();
-                        $("#searchBeer").autocomplete({
-                            source: window.item_list
-                        });
+                        <div class="form-group">
+                            <div class="icon-addon addon-lg" id="search">
+                                <label class="fa fa-search"></label>
+                                <input type="text" id="searchBeer" class="form-control input-lg flat" name="search-item" placeholder="Search for a Beer's Name, Company, Country, etc..,">
+                            </div>
+                        </div>
+                        <span class="input-group-btn">
+                            <button class="btn btn-lg btn-secondary animation text-uppercase" type="submit">Search</button>
+                        </span>
+                    </div>
+                    {% if errors %}
+                    {% for error in errors %}
+                    <script>alert( '{{error}}' );</script>
+                    {% endfor %}
+                    {% endif %}                         
+                </form>
+                {% if item_list %}
+                <script>
+                    (function () {
+                        window.item_list = {{item_list|safe}};
+                    })();
+                    $("#searchBeer").autocomplete({
+                        source: window.item_list
+                    });
 
-                    </script> 
-                    {% endif %}
-                </div>
-                <!-- Nested Container Ends -->
-            </section>
-            <!-- Search Section Ends -->
+                </script> 
+                {% endif %}           
+            </div>
+            <!-- Nested Container Ends -->
+        </section>
+        <!-- Search Section Ends -->
 
 
         {% block content %}
@@ -338,7 +338,7 @@
         <script src='{% static "js/plugins/datepicker/bootstrap-datepicker.js" %}'></script>
         <script src='{% static "js/plugins/owl-carousel/owl.carousel.js" %}'></script>
         <script src='{% static "js/plugins/magnific-popup/jquery.magnific-popup.min.js" %}'></script>
-       <!--  <script src='{% static "https://maps.googleapis.com/maps/api/js?v=3&amp;sensor=false" %}'></script>  -->
+        <!--  <script src='{% static "https://maps.googleapis.com/maps/api/js?v=3&amp;sensor=false" %}'></script>  -->
         <script src='{% static "js/custom.js" %}'></script> 
 
         <!-- Custom Theme JavaScript -->

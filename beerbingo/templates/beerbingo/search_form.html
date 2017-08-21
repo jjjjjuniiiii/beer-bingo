@@ -54,41 +54,51 @@
 				<div class="well">
 					<legend><center> Search Beers!</center></legend>
 					<div class="row">
-						<div class="form-group col-sm-4 col-md-6">
+						<div class="form-group col-xs-3 ">
 							<label style="color:  #ff7373">Beer Name </label>
-							{% render_field filter.form.name class="form-control" %}
+							{% render_field filter.form.name class="form-control" id="searchName" %}
 						</div>
-						<div class="form-group col-sm-4 col-md-6">
+						<div class="form-group col-xs-3 ">
 							<label style="color:  #ff7373">Beer Style </label>
-							{% render_field filter.form.style class="form-control" %}
+							{% render_field filter.form.style class="form-control" id="searchStyle" %}
 						</div>
-					</div>
-					<div class="row">
-						<div class="form-group col-sm-4 col-md-6">
+						<div class="form-group col-xs-3 ">
 							<label style="color:  #ff7373">Beer Country </label>
-							{% render_field filter.form.country class="form-control" %}
+							{% render_field filter.form.country class="form-control" id="searchCountry" %}
 						</div>
-						<div class="form-group col-sm-4 col-md-6">
+						<div class="form-group col-xs-3 ">
 							<label style="color:  #ff7373">Beer Company </label>
-							{% render_field filter.form.company class="form-control" %}
+							{% render_field filter.form.company class="form-control" id="searchCompany" %}
 						</div>
 					</div>
-					<!-- <div class="row">
-						<div class="form-group col-sm-8 col-md-6">
-							<label style="color:  #ff7373">Beer Rate </label>
-							<div>
-								{% for choice in filter.form.items %}
-								<label class="checkbox-inline">
-									{{ choice.tag }} {{ choice.choice_label }}
-								</label>
-								{% endfor %}
-							</div>
-						</div>
-					</div> -->
+					
 					<center><span class="input-group-btn">
 						<button class="btn btn-lg btn-secondary animation text-uppercase" type="submit">Search</button>
 					</span></center>
 				</div>
+				{% if item_name %}
+				<script type="text/javascript">
+					(function () {
+						window.item_name = {{item_name|safe}};
+						window.item_style = {{item_style|safe}};
+						window.item_company = {{item_company|safe}};
+						window.item_country = {{item_country|safe}};
+					})();
+					$("#searchName").autocomplete({
+						source: window.item_name
+					});
+					$("#searchStyle").autocomplete({
+						source: window.item_style
+					});
+					$("#searchCountry").autocomplete({
+						source: window.item_country
+					});
+					$("#searchCompany").autocomplete({
+						source: window.item_company
+					});
+
+				</script> 
+				{% endif %}
 			</form>
 
 			<table class="table table-bordered">
@@ -104,26 +114,33 @@
 				<tbody>
 					{% for item in filter.qs %}
 					<tr>
-						<td>{{ item.name }}</td>
-						<td>{{ item.style }}</td>
-						<td>{{ item.country }}</td>
-						<td>{{ item.company }}</td>
-						<td>
-							{% for category in item.items.all %}
-							{{ category }}
-							{% empty %}
-							<em class="text-muted">No rate</em>
-							{% endfor %}
-						</td>
-					</tr>
-					{% empty %}
-					<tr>
-						<td colspan="5">No beer!</td>
-					</tr>
-					{% endfor %}
-				</tbody>
-			</table>
-			{% endblock content %}
-			
-		</body>
-		</html>
+						<td><a href="/list-search" name="beername" onchange="this.form.submit();" />
+							<!-- <script type="text/javascript">
+								function go(beername){
+									form.action = "/list-search";
+									form.submit = "";
+									form.value = "{{ item.name }}"
+								} 
+							</script> --> {{ item.name }} </a></td>
+							<td>{{ item.style }}</td>
+							<td>{{ item.country }}</td>
+							<td>{{ item.company }}</td>
+							<td>
+								{% for category in item.items.all %}
+								{{ category }}
+								{% empty %}
+								<em class="text-muted">No rate</em>
+								{% endfor %}
+							</td>
+						</tr>
+						{% empty %}
+						<tr>
+							<td colspan="5" style="text-align: center; font-weight: bold;"><big>No beer!</big></td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+				{% endblock content %}
+
+			</body>
+			</html>

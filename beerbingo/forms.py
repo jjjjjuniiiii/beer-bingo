@@ -44,7 +44,7 @@ class RegBeerForm(forms.ModelForm):
 
     class Meta:
         model = Item
-        fields = ('name_select', 'company_select', 'country_select',)
+        fields = ('name_select','company_select', 'country_select',)
 
 
 class ContactForm(forms.Form):

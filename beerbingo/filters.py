@@ -9,6 +9,9 @@ class BeerFilter(django_filters.FilterSet):
  #        widget=forms.CheckboxSelectMultiple)
 	name = django_filters.CharFilter(lookup_expr='icontains')
 	style = django_filters.CharFilter(lookup_expr='icontains')
+	company = django_filters.CharFilter(lookup_expr='icontains')
+	country = django_filters.CharFilter(lookup_expr='icontains')
+	rate = django_filters.CharFilter(lookup_expr='icontains')
 	class Meta:
 		model = Item
 		fields = ['name', 'style', 'company', 'country','rate',]

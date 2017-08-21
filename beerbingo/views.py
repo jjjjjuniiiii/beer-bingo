@@ -44,7 +44,7 @@ def beer_details(request):
 	item_list=[];
 	for item in beers:
 		item_list.append(item.name)
-	return render(request, 'beerbingo/beer-details.html',{'item_list':item_list})
+	return render(request, 'beerbingo/base_search.html',{'item_list':item_list})
 
 def contact(request):
 	return render(request, 'beerbingo/contact.html',{})
@@ -58,12 +58,32 @@ def login(request):
 def crawl_view(request):
 	main()
 	return render(request, 'beerbingo/auto.html',{})
-
+#list-search/
 def search_beer(request):
-	# form = FilterForm(request.POST or None)
-	# answer = ''
-	# if form.is_valid():
-	# 	answer = form.cleaned_data.get('filter_by') 
+	beers = Item.objects.all()
+	item_list=[];
+	for item in beers:
+		item_list.append(item.name)
+
+	errors = ['wrong ! uu']
+	if request.method == 'GET':	
+		search_item = request.GET.get('beername')
+
+		print(search_item)
+
+		if not search_item:
+			errors.append('wrong!')
+		else :
+			searchObj_name = Item.objects.filter(name__icontains=search_item)
+			return render_to_response('beerbingo/beer-details.html', {'searchObj' : searchObj_name, 'query' : search_item,'item_list':item_list})	
+	return render_to_response('beerbingo/index.html', {'errors' : errors})
+
+def search(request):
+	beers = Item.objects.all()
+	item_list=[];
+	for item in beers:
+		item_list.append(item.name)
+
 	errors = []
 	if 'search-item' in request.GET :
 		search_item = request.GET['search-item']
@@ -74,15 +94,25 @@ def search_beer(request):
 		else : 
 			searchObj_name = Item.objects.filter(name__icontains=search_item)
 			return render_to_response('beerbingo/beer-details.html', {'searchObj' : searchObj_name, 
-			'query' : search_item})	
+			'query' : search_item,'item_list':item_list})	
 
 	return render_to_response('beerbingo/index.html', {'errors' : errors})
-		#return HttpResponse('Please submit a search beer!')
 
 def search_filtering(request):
 	beer_list = Item.objects.all()
+	item_name = [];
+	item_style = [];
+	item_company = [];
+	item_country = [];
+	for item in beer_list:
+		item_name.append(item.name)
+		item_style.append(item.style)
+		item_company.append(item.company)
+		item_country.append(item.country)
+	#json = simplejson.dumps(item_list)
 	beer_filter = BeerFilter(request.GET, queryset = beer_list)
-	return render(request, 'beerbingo/search_form.html', {'filter': beer_filter})
+	return render(request, 'beerbingo/search_form.html', 
+		{'filter': beer_filter, 'item_name': item_name, 'item_style':item_style, 'item_company':item_company, 'item_country': item_country})
 
 #자동완성
 def auto_complete(request):
@@ -99,10 +129,18 @@ def to_json(objs, status=200):
 	
 def auto(request):
    beers = Item.objects.all()
-   item_list=[];
+   beer_list={}
    for item in beers:
-      item_list.append(item.name)
-   return render(request, 'beerbingo/auto.html',{'item_list':item_list})
+      beer_list[item]=[]
+      beer_list[item].append(item.name)
+      beer_list[item].append(item.style)
+      beer_list[item].append(item.company)
+      beer_list[item].append(item.country)
+   
+   return beer_list
+
+if __name__ == '__auto__':
+    auto()
 
 # def question_choices(request): 
 #     question_list = []
@@ -143,39 +181,6 @@ def regbeer(request):
     else:
         beer_form = RegBeerForm()
     return render(request, 'beerbingo/auto.html', {'beer_form': beer_form})
-# def profile(request, pk, template='beerbingo/profile.html'):
-#     item = get_object_or_404(Item, pk=pk)  # pk is primary key, so url will be site.com/profile/3
-#     context = {'item': item}
-#     return render(request, template, context)  
-
-
-
-# @csrf_exempt
-# def contact(request):
-# 	errors = []
-# 	if request.method == 'POST':
-# 		if not request.POST.get('contact-name',''):
-# 			errors.append('Enter your name!')
-# 		if not request.POST.get('contact-beer-name',''):
-# 			errors.append('Enter your beer name!')
-# 		if request.POST.get('contact-email') and '@' not in request.POST['contact-email'] : 
-# 			errors.append('Enter a valid e-mail address.')
-# 		if not errors : 
-# 			send_mail(
-# 				request.POST['contact-name'],
-# 				request.POST.get('contact-email','noreply@example.com'),
-			
-# 				request.POST['contact-beer-name'],
-# 				['siteowner@example.com'],
-# 				)
-# 			return HttpResponseRedirect('/contact/thanks/')
-
-# 	return render_to_response('beerbingo/contact.html', {
-# 		'errors' : errors,
-# 		'contact_name' : request.POST.get('contact-name',''),
-# 		'contact_beer_name' : request.POST.get('contact-beer-name',''),
-# 		'contact_email' : request.POST.get('contact-email',''),
-# 		})
 
 @csrf_exempt
 def contact(request):

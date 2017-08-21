@@ -15,23 +15,23 @@
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
-</script>  -->
+</script>  
 </head>
 <body>
   {% block content %}
-    <h3>Registering beers on the fleet. <br />(Populate one drop down based on selection in another)</h3>
-    <p>Change the contents of drop down beer based on the selection in dropdown Brand, using Django-forms + Javascritp</p>
-    <div class="select-style">
-        <form action="." method="post">
-            {% csrf_token %}
-            {{ beer_form.as_p }}
-            <p><input type="submit" value="Register a car"></p>
-        </form>
-    </div>
-{% endblock %}
+  <h4>Registering beers on the fleet. <br />(Populate one drop down based on selection in another)</h4>
+  <p>Change the contents of drop down beer based on the selection in dropdown Brand, using Django-forms + Javascritp</p>
+  <div class="select-style">
+    <form action="." method="post">
+      {% csrf_token %}
+      {{ beer_form.as_p }}
+      <p><input type="submit" value="Register a car"></p>
+    </form>
+  </div>
+  {% endblock %}
 
-{% block js %}
-    {% include "js1.html" %}
-{% endblock %}
+  {% block js %}
+  {% include "js1.html" %}
+  {% endblock %}
 </body>
 </html>
