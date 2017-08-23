@@ -144,6 +144,10 @@ h6 { font-size: 18px; }
 .btn-secondary {
 	background-color: #cf3d27;
 }
+.btn-secondary2 {
+	background-color: #e8eeef;;
+	color : #ff7373;
+}
 .btn-secondary:hover, 
 .btn-secondary:focus,
 .btn-secondary:active,
@@ -623,6 +627,17 @@ h6 { font-size: 18px; }
 	color: #fff;
 	opacity: 1;	
 }
+.beer-image .hover-content .overlay {
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.4);
+	color: #fff;
+	opacity: 1;	
+}
 .food-menu-grid .hover-content:hover .overlay {
 	background: rgba(0, 0, 0, 0.6);
 }
@@ -639,6 +654,26 @@ h6 { font-size: 18px; }
 }
 .food-menu-grid .hover-content .overlay h4, 
 .food-menu-grid .hover-content .overlay h4 a {
+	color: #fff;
+}
+
+
+.beer-image .hover-content:hover .overlay {
+	background: rgba(0, 0, 0, 0.6);
+}
+.beer-image .hover-content:hover img {
+	-webkit-transform: rotate(5deg) scale(1.3);
+	-moz-transform: rotate(5deg) scale(1.3);
+	-ms-transform: rotate(5deg) scale(1.3);
+	-o-transform: rotate(5deg) scale(1.3);
+	transform: rotate(5deg) scale(1.3);
+}
+.beer-image .hover-content .overlay h4 {
+	margin-top: 17%;
+	margin-bottom: 0;
+}
+.beer-image .hover-content .overlay h4, 
+.beer-image .hover-content .overlay h4 a {
 	color: #fff;
 }
 

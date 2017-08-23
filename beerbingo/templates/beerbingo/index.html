@@ -44,35 +44,35 @@
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 
-		  <!-- Fav and touch icons -->
-		  <link rel="apple-touch-icon-precomposed" sizes="144x144" href='{% static "images/fav-144.png" %}'>
-		  <link rel="apple-touch-icon-precomposed" sizes="114x114" href='{% static "images/fav-114.png" %}'>
-		  <link rel="apple-touch-icon-precomposed" sizes="72x72" href='{% static "images/fav-72.png" %}'>
-		  <link rel="apple-touch-icon-precomposed" href='{% static "images/fav-57.png" %}'>
-		  <link rel="shortcut icon" href='{% static "images/fav.png" %}'>
+	<!-- Fav and touch icons -->
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href='{% static "images/fav-144.png" %}'>
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href='{% static "images/fav-114.png" %}'>
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href='{% static "images/fav-72.png" %}'>
+	<link rel="apple-touch-icon-precomposed" href='{% static "images/fav-57.png" %}'>
+	<link rel="shortcut icon" href='{% static "images/fav.png" %}'>
 
-		</head>
-		<body> 
-			{% block content %}
-			<!-- Search Section Starts -->
-			<section class="search-area parallax">
-				<!-- Nested Container Starts -->
-				<div class="container text-center">
-					<h3 class="text-normal">Find the best Beers, &amp; Tastes in Your Place</h3>
-					<form method="get" action="/search" class="top-search">
-						<div class="input-group-md">
-							<div class="input-group-btn search-panel">
-								<button type="button" class="btn btn-lg btn-default dropdown-toggle" data-toggle="dropdown">
-									<span class="fa fa-map-marker"></span>
-									<span class="text-label">Find Your Beer</span> 
-									<span class="fa fa-angle-down"></span>
-								</button> -->
-								<ul class="dropdown-menu flat" role="menu">
-									<li><a href="#">NAME</a></li>
-									<li><a href="#">STYLE</a></li>
-									<li><a href="#">COMPANY</a></li>
-									<li><a href="#">COUNTRY</a></li>
-								</ul> 
+</head>
+<body> 
+	{% block content %}
+	<!-- Search Section Starts -->
+	<section class="search-area parallax">
+		<!-- Nested Container Starts -->
+		<div class="container text-center">
+			<h3 class="text-normal">Find the best Beers, &amp; Tastes in Your Place</h3>
+			<form method="get" action="/search" class="top-search">
+				<div class="input-group-md">
+					<div class="input-group-btn search-panel">
+						<button type="button" class="btn btn-lg btn-default dropdown-toggle" data-toggle="dropdown">
+							<span class="fa fa-map-marker"></span>
+							<span class="text-label">Find Your Beer</span> 
+							<span class="fa fa-angle-down"></span>
+						</button> -->
+						<ul class="dropdown-menu flat" role="menu">
+							<li><a href="#">NAME</a></li>
+							<li><a href="#">STYLE</a></li>
+							<li><a href="#">COMPANY</a></li>
+							<li><a href="#">COUNTRY</a></li>
+						</ul> 
 								<!-- <button type="button" class="btn btn-lg btn-default dropdown-toggle" data-toggle="dropdown">
 									<label for="id_filter_by">Filter by:</label> 
 									<select id="id_filter_by" class="form-control" name="category-filter" onchange="this.form.submit();" required>
@@ -182,98 +182,6 @@
 					</div>
 					<!-- Welcome Content Ends -->
 					<!-- Food Menu Grid Starts -->
-					<div class="food-menu-grid row text-center">
-						<!-- Food Menu #1 Starts -->
-						<div class="col-md-4 col-sm-6 col-xs-12">
-							<div class="hover-content">
-								<img src='{% static "images/menu/thumb/chinese-menu.jpg" %}' alt="chinese" class="img-responsive animation">
-								<div class="overlay animation">
-									<h4 class="text-uppercase">Chinese</h4>
-								</div>
-							</div>
-						</div>
-						<!-- Food Menu #1 Ends -->
-						<!-- Food Menu #2 Starts -->
-						<div class="col-md-4 col-sm-6 col-xs-12">
-							<div class="hover-content">
-								<img src='{% static "images/menu/thumb/indian-menu.jpg" %}' alt="Indian" class="img-responsive animation">
-								<div class="overlay animation">
-									<h4 class="text-uppercase">Indian</h4>
-								</div>
-							</div>
-						</div>
-						<!-- Food Menu #2 Ends -->
-						<!-- Food Menu #3 Starts -->
-						<div class="col-md-4 col-sm-6 col-xs-12">
-							<div class="hover-content">
-								<img src='{% static "images/menu/thumb/italian-menu.jpg" %}' alt="italian" class="img-responsive animation">
-								<div class="overlay animation">
-									<h4 class="text-uppercase">Italian</h4>
-								</div>
-							</div>
-						</div>
-						<!-- Food Menu #3 Ends -->
-						<!-- Food Menu #4 Starts -->
-						<div class="col-md-4 col-sm-6 col-xs-12">
-							<div class="hover-content">
-								<img src='{% static "images/menu/thumb/continental-menu.jpg" %}' alt="continental" class="img-responsive animation">
-								<div class="overlay animation">
-									<h4 class="text-uppercase">Continental</h4>
-								</div>
-							</div>
-						</div>
-						<!-- Food Menu #4 Ends -->
-						<!-- Food Menu #5 Starts -->
-						<div class="col-md-4 col-sm-6 col-xs-12">
-							<div class="hover-content">
-								<img src='{% static "images/menu/thumb/thai-menu.jpg" %}' alt="thai" class="img-responsive animation">
-								<div class="overlay animation">
-									<h4 class="text-uppercase">Thai</h4>
-								</div>
-							</div>
-						</div>
-						<!-- Food Menu #5 Ends -->
-						<!-- Food Menu #6 Starts -->
-						<div class="col-md-4 col-sm-6 col-xs-12">
-							<div class="hover-content">
-								<img src='{% static "images/menu/thumb/sushi-menu.jpg" %}' alt="sushi" class="img-responsive animation">
-								<div class="overlay animation">
-									<h4 class="text-uppercase">Sushi</h4>
-								</div>
-							</div>
-						</div>
-						<!-- Food Menu #6 Ends -->
-						<!-- Food Menu #7 Starts -->
-						<div class="col-md-4 col-sm-6 col-xs-12">
-							<div class="hover-content">
-								<img src='{% static "images/menu/thumb/pizza-menu.jpg" %}' alt="Pizza &amp; Burgers" class="img-responsive animation">
-								<div class="overlay animation">
-									<h4 class="text-uppercase">Pizza &amp; Burgers</h4>
-								</div>
-							</div>
-						</div>
-						<!-- Food Menu #7 Ends -->
-						<!-- Food Menu #8 Starts -->
-						<div class="col-md-4 col-sm-6 col-xs-12">
-							<div class="hover-content">
-								<img src='{% static "images/menu/thumb/veggies-menu.jpg" %}' alt="Pure Veggies" class="img-responsive animation">
-								<div class="overlay animation">
-									<h4 class="text-uppercase">Pure Veggies</h4>
-								</div>
-							</div>
-						</div>
-						<!-- Food Menu #8 Ends -->
-						<!-- Food Menu #9 Starts -->
-						<div class="col-md-4 col-sm-6 col-xs-12">
-							<div class="hover-content">
-								<img src='{% static "images/menu/thumb/tiffins-menu.jpg" %}' alt="tiffins &amp; breakfast" class="img-responsive animation">
-								<div class="overlay animation">
-									<h4 class="text-uppercase">Tiffins &amp; Breakfast</h4>
-								</div>
-							</div>
-						</div>
-						<!-- Food Menu #9 Ends -->
-					</div>
 					<!-- Food Menu Grid Ends -->
 				</div>
 				<!-- Nested Container Ends -->

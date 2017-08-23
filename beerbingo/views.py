@@ -58,6 +58,7 @@ def login(request):
 def crawl_view(request):
 	main()
 	return render(request, 'beerbingo/auto.html',{})
+
 #list-search/
 def search_beer(request):
 	beers = Item.objects.all()
@@ -65,11 +66,9 @@ def search_beer(request):
 	for item in beers:
 		item_list.append(item.name)
 
-	errors = ['wrong ! uu']
+	errors = []
 	if request.method == 'GET':	
-		search_item = request.GET.get('beername')
-
-		print(search_item)
+		search_item = request.GET.get('beer_name')
 
 		if not search_item:
 			errors.append('wrong!')
@@ -104,15 +103,17 @@ def search_filtering(request):
 	item_style = [];
 	item_company = [];
 	item_country = [];
+	item_rate = [];
 	for item in beer_list:
 		item_name.append(item.name)
 		item_style.append(item.style)
 		item_company.append(item.company)
 		item_country.append(item.country)
+		item_rate.append(item.rate)
 	#json = simplejson.dumps(item_list)
 	beer_filter = BeerFilter(request.GET, queryset = beer_list)
 	return render(request, 'beerbingo/search_form.html', 
-		{'filter': beer_filter, 'item_name': item_name, 'item_style':item_style, 'item_company':item_company, 'item_country': item_country})
+		{'filter': beer_filter, 'item_name': item_name, 'item_style':item_style, 'item_company':item_company, 'item_country': item_country, 'item_rate':item_rate,})
 
 #자동완성
 def auto_complete(request):

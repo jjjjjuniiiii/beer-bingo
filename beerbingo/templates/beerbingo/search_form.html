@@ -100,34 +100,28 @@
 				</script> 
 				{% endif %}
 			</form>
+			<form method="get" action="/list-search">
+				<table class="table table-bordered table-responsive">
+					<thead>
+						<tr>
+							<th>Beer Name</th>
+							<th>Beer Style</th>
+							<th>Beer Country</th>
+							<th>Beer Company</th>
+							<th>Rate</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for item in filter.qs %}
+						<tr>
 
-			<table class="table table-bordered">
-				<thead>
-					<tr>
-						<th>Beer Name</th>
-						<th>Beer Style</th>
-						<th>Beer Country</th>
-						<th>Beer Company</th>
-						<th>Rate</th>
-					</tr>
-				</thead>
-				<tbody>
-					{% for item in filter.qs %}
-					<tr>
-						<td><a href="/list-search" name="beername" onchange="this.form.submit();" />
-							<!-- <script type="text/javascript">
-								function go(beername){
-									form.action = "/list-search";
-									form.submit = "";
-									form.value = "{{ item.name }}"
-								} 
-							</script> --> {{ item.name }} </a></td>
-							<td>{{ item.style }}</td>
-							<td>{{ item.country }}</td>
-							<td>{{ item.company }}</td>
-							<td>
-								{% for category in item.items.all %}
-								{{ category }}
+							<td class="col-xs-2"><a href="/list-search"><input class="btn btn-secondary2 text-uppercase animation" type="submit" name="beer_name" value="{{ item.name }}"> </a></td>
+							<td class="col-xs-2">{{ item.style }}</td>
+							<td class="col-xs-2">{{ item.country }}</td>
+							<td class="col-xs-3">{{ item.company }}</td>
+							<td class="col-xs-2">
+								{% for rates in item.rate %}
+								{{ rates }}
 								{% empty %}
 								<em class="text-muted">No rate</em>
 								{% endfor %}
@@ -135,12 +129,13 @@
 						</tr>
 						{% empty %}
 						<tr>
-							<td colspan="5" style="text-align: center; font-weight: bold;"><big>No beer!</big></td>
+							<td colspan="5" style="text-align: center; font-weight: bold;"><big> No beer!</big></td>
 						</tr>
 						{% endfor %}
 					</tbody>
 				</table>
-				{% endblock content %}
+			</form>
+			{% endblock content %}
 
-			</body>
-			</html>
+		</body>
+		</html>
