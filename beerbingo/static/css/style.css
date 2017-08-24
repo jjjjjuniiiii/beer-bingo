@@ -307,8 +307,8 @@ h6 { font-size: 18px; }
 	background-image: url(../images/beer_2.jpg);
 }
 .search-area.condensed {
-	padding-top: 50px;
-	padding-bottom: 50px;
+	padding-top: 100px;
+	padding-bottom: 100px;
 }
 .search-area h3 {
 	margin-bottom: 50px;
@@ -447,8 +447,8 @@ h6 { font-size: 18px; }
 /* Main Banner Section Styles Starts */
 
 .main-banner {
-	padding-top: 100px;
-	padding-bottom: 100px;
+	padding-top: 50px;
+	padding-bottom: 50px;
 	color: #fff;	
 }
 .main-banner.one {
@@ -1965,6 +1965,11 @@ h6 { font-size: 18px; }
 	background-repeat: no-repeat;
 	background-position: center;
 	background-attachment: fixed;
+}
+
+.parallax_beer {
+	background-size: cover;
+	background-repeat: no-repeat;
 }
 
 .food-menu-grid .hover-content .overlay h4 a:hover {

@@ -99,24 +99,80 @@ def search(request):
 
 def search_filtering(request):
 	beer_list = Item.objects.all()
+	beers_list = Item.objects.all().order_by("name")
+	query = request.GET.get("q")
 	item_name = [];
 	item_style = [];
 	item_company = [];
 	item_country = [];
 	item_rate = [];
+	#자동완성
 	for item in beer_list:
 		item_name.append(item.name)
 		item_style.append(item.style)
 		item_company.append(item.company)
 		item_country.append(item.country)
 		item_rate.append(item.rate)
-	#json = simplejson.dumps(item_list)
 	beer_filter = BeerFilter(request.GET, queryset = beer_list)
-	return render(request, 'beerbingo/search_form.html', 
-		{'filter': beer_filter, 'item_name': item_name, 'item_style':item_style, 'item_company':item_company, 'item_country': item_country, 'item_rate':item_rate,})
 
-#자동완성
+	# #페이지네이션
+	# paginator = Paginator(item_name, 15) # Show 15 contacts per page
+	# page = request.GET.get('page')
+	# try:
+	# 	beers = paginator.page(page)
+	# except PageNotAnInteger:
+	# 	# If page is not an integer, deliver first page.
+	# 	beers = paginator.page(1)
+
+	# except EmptyPage:
+	# 	beers = paginator.page(paginator.num_pages)
+
+	return render(request, "beerbingo/search_form.html", 
+		{'filter': beer_filter, 'item_name': item_name, 'item_style':item_style, 'item_company':item_company, 'item_country': item_country, 'item_rate': item_rate,})
+    
+def photo_album(request):
+
+    item_list = Item.objects.all()
+    query = request.GET.get("q")
+
+    if query:
+        queryset_list = queryset_list.filter(
+            Q(name__icontains=query) |
+            Q(style__icontains=query) |
+            Q(country__icontains=query) |
+            Q(company__icontains=query)
+
+        ).distinct()
+
+
+    paginator = Paginator(item_list, 20)
+    page_request_var = "page"
+    page = request.GET.get(page_request_var)
+
+    try:
+        queryset = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+
+        queryset = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        queryset = paginator.page(paginator.num_pages)
+
+    context = {
+
+        "object_list": queryset,
+        "name": "List",
+        "page_request_var": page_request_var,
+    }
+
+    return render(request, "beerbingo/home.html", context)
+
+
+
+    #자동완성
 def auto_complete(request):
+
    beers = Item.objects.all()
    item_list=[];
    for item in beers:
@@ -143,21 +199,6 @@ def auto(request):
 if __name__ == '__auto__':
     auto()
 
-# def question_choices(request): 
-#     question_list = []
-#     question_set_id = request.GET.get('question_set_id')
-#     questions       = Question.objects.filter(question_set = question_set_id)    
-#     [question_list.append((each_question.pk,each_question.name)) for each_question in questions]
-#     json = simplejson.dumps(question_list)
-#     return HttpResponse(json, mimetype='application/javascript')
-
-# def name_of_the_category(request):
-#  form = FilterForm(request.POST or None)
-#  answer = ''
-#  if form.is_valid():
-#   answer = form.cleaned_data.get('filter_by') 
-#   # notice `filter_by` matches the name of the variable we designated
-#   # in forms.py 
 class HomeView(View):
     # @staticmethod
     def get(self, request, *args, **kwargs):
@@ -219,40 +260,3 @@ def insertDB(namee):
 def contact_email(request):
 	return render(request, 'beerbingo/contact-email.html',{})
 	
-def photo_album(request):
-
-    item_list = Item.objects.all()
-    query = request.GET.get("q")
-
-    if query:
-        queryset_list = queryset_list.filter(
-            Q(name__icontains=query) |
-            Q(style__icontains=query) |
-            Q(country__icontains=query) |
-            Q(company__icontains=query)
-
-        ).distinct()
-
-
-    paginator = Paginator(item_list, 20)
-    page_request_var = "page"
-    page = request.GET.get(page_request_var)
-
-    try:
-        queryset = paginator.page(page)
-    except PageNotAnInteger:
-        # If page is not an integer, deliver first page.
-
-        queryset = paginator.page(1)
-    except EmptyPage:
-        # If page is out of range (e.g. 9999), deliver last page of results.
-        queryset = paginator.page(paginator.num_pages)
-
-    context = {
-
-        "object_list": queryset,
-        "name": "List",
-        "page_request_var": page_request_var,
-    }
-
-    return render(request, "beerbingo/home.html", context)
